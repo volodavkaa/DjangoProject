@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Головна</title>
+    <title>Новини</title>
     {% load static %}
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
   </head>
   <body>
     <header class="bg-primary text-white text-center py-4">
@@ -23,7 +24,28 @@
     </header>
 
     <main class="container my-5">
-      <p class="text-center">Ласкаво просимо на головну сторінку!</p>
+      <h2 class="text-center mb-4">Стрічка новин</h2>
+      {% if news %}
+      <div class="row">
+        {% for article in news %}
+        <div class="col-md-6">
+          <div class="news-card">
+            <h3>{{ article.title }}</h3>
+            <a
+              href="{{ article.link }}"
+              class="btn btn-primary mt-2"
+              target="_blank"
+              >Читати далі</a
+            >
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="text-center text-muted">
+        Новини відсутні або не вдалося завантажити.
+      </p>
+      {% endif %}
     </main>
 
     <footer class="bg-dark text-white text-center py-3">
