@@ -1,36 +1,10 @@
-<!DOCTYPE html>
-<html lang="uk">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Контакти</title>
-    {% load static %}
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
-  </head>
-  <body>
-    <header class="bg-success text-white text-center py-4">
-      <h1>Контакти</h1>
-      <nav>
-        <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link text-white" href="/">Головна</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="/contact/">Контакти</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+{% extends "layout.html" %}
 
-    <main class="container my-5">
-      <p class="text-center">
-        Це сторінка контактів. Ви можете зв'язатися з нами тут!
-      </p>
-    </main>
+{% block title %}Контакти{% endblock %}
 
-    <footer class="bg-dark text-white text-center py-3">
-      <p>&copy; 2024 Всі права захищені.</p>
-    </footer>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-  </body>
-</html>
+{% block header %}Контактна інформація{% endblock %}
+
+{% block content %}
+<h2>Зв'яжіться з нами</h2>
+<p>Ми раді відповісти на всі ваші запитання.</p>
+{% endblock %}
