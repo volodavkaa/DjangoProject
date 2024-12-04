@@ -9,26 +9,37 @@
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
   </head>
   <body>
-    <header class="bg-primary text-white text-center py-4">
-      <h1>{% block header %}Заголовок{% endblock %}</h1>
-      <nav>
-        <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link text-white" href="/">Головна</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="/contact/">Контакти</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Новини</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Переключити навігацію"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Головна</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="/contact/">Контакти</a>
+            </li>            
+          </ul>
+        </div>
+      </div>
+    </nav>
     <main class="container my-5">
       {% block content %}
-      <p> </p>
+      <p></p>
       {% endblock %}
     </main>
-
     <footer class="bg-dark text-white text-center py-3">
       <p>&copy; 2024 Всі права захищені.</p>
     </footer>

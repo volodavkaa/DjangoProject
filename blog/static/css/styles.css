@@ -23,4 +23,17 @@
     color: white;
     padding: 15px 0;
   }
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  .navbar-nav .nav-link {
+    font-size: 1.1rem;
+  }
+  
+  .navbar-nav .nav-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+  }
   
