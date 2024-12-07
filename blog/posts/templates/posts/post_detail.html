@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
+<p>Опубліковано: {{ post.created_at }}</p>
+{% endblock %}

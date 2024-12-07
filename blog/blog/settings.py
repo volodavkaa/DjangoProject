@@ -75,13 +75,23 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#       'NAME': BASE_DIR / 'db.sqlite3',
+#  }
+#}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Mydb_zebrasharp',
+        'USER': 'Mydb_zebrasharp', 
+        'PASSWORD': '11cab4c85190accecfc9af2c377b9b8b137f8909',
+        'HOST': '2xb0f.h.filess.io',
+        'PORT': '3305', 
+        'OPCIONS':{'sql_mode':'traditional'}
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
