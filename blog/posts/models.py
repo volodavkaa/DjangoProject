@@ -7,7 +7,7 @@ class Post(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    photo_url = models.URLField(max_length=500, blank=True, null=True)  # Поле для URL фото
+    photo_url = models.URLField(max_length=500, blank=True, null=True) 
 
     def save(self, *args, **kwargs):
         if not self.slug:
