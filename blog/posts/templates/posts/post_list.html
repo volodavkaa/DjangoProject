@@ -3,20 +3,26 @@
 {% block title %}Мої пости{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-  <h2 class="text-center mb-4">Мої пости</h2>
-  <div class="row">
-    {% for post in posts %}
-    <div class="col-md-6">
-      <div class="card mb-4">
-        <div class="card-body">
-          <h5 class="card-title"><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h5>
-        <p class="card-text">{{ post.content|truncatewords:20 }}</p>
-        <p class="text-muted">Опубліковано: {{ post.created_at }}</p>
+<h1 class="text-center my-4">Мої пости</h1>
+<div class="container">
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card h-100">
+                {% if post.photo_url %}
+                <img src="{{ post.photo_url }}" class="card-img-top" alt="Фото посту">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.content|truncatewords:15 }}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Опубліковано: {{ post.created_at }}</small>
+                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary btn-sm float-end">Детальніше</a>
+                </div>
+            </div>
         </div>
-      </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-  </div>
 </div>
 {% endblock %}

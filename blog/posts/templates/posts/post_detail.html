@@ -6,4 +6,11 @@
 <h1>{{ post.title }}</h1>
 <p>{{ post.content }}</p>
 <p>Опубліковано: {{ post.created_at }}</p>
+
+<!-- Відображення фото -->
+{% if post.photo_url %}
+    <img src="{{ post.photo_url }}" alt="Фото посту" style="max-width: 100%; height: auto;">
+{% else %}
+    <p>Фото не додано.</p>
+{% endif %}
 {% endblock %}
