@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}Вихід{% endblock %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h1>Ви вийшли з облікового запису!</h1>
+    <p><a href="{% url 'login' %}">Увійти знову</a></p>
+</div>
+{% endblock %}

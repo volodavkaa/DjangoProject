@@ -32,8 +32,27 @@
               <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="/contact/">Контакти</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/posts/">Мої пости</a>
-            </li>            
+              <a class="nav-link {% if request.path == '/posts/' %}active{% endif %}" href="/posts/">Мої пости</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if request.path == '/users/profile/' %}active{% endif %}" href="{% url 'profile' %}">Профіль</a>
+          </li>
+          
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <form action="{% url 'logout' %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger nav-link border-0">Вийти</button>
+              </form>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link {% if request.path == '/login/' %}active{% endif %}" href="{% url 'login' %}">Увійти</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if request.path == '/register/' %}active{% endif %}" href="{% url 'register' %}">Реєстрація</a>
+            </li>
+            {% endif %}
           </ul>
         </div>
       </div>

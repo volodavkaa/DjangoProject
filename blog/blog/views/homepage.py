@@ -1,7 +1,8 @@
 import requests
+from django.contrib.auth.decorators import login_required
 from bs4 import BeautifulSoup
 from django.shortcuts import render
-
+@login_required(login_url='/users/login/')
 def homepage(request):
     url = "https://tsn.ua/"
     headers = {
