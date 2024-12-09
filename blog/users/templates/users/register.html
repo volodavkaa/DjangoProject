@@ -1,40 +1,42 @@
 {% extends "layout.html" %}
+{% load static %}
 
 {% block title %}Реєстрація{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card mt-5">
-                <div class="card-header bg-primary text-white text-center">
-                    <h4>Реєстрація</h4>
+            <h1 class="text-center mb-4">Реєстрація</h1>
+            <form id="registrationForm" method="POST" novalidate>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_username" class="form-label">Ім'я користувача</label>
+                    {{ form.username }}
+                    <div class="invalid-feedback">Будь ласка, введіть ім'я користувача.</div>
                 </div>
-                <div class="card-body">
-                    <form method="POST">
-                        {% csrf_token %}
-                        <div class="form-group mb-3">
-                            <label for="id_username">Ім'я користувача</label>
-                            {{ form.username }}
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="id_email">Електронна пошта</label>
-                            {{ form.email }}
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="id_password1">Пароль</label>
-                            {{ form.password1 }}
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="id_password2">Підтвердження пароля</label>
-                            {{ form.password2 }}
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Зареєструватися</button>
-                    </form>
+                <div class="mb-3">
+                    <label for="id_email" class="form-label">Електронна пошта</label>
+                    {{ form.email }}
+                    <div class="invalid-feedback">Будь ласка, введіть дійсну електронну пошту.</div>
                 </div>
-                <div class="card-footer text-center">
-                    <p>Вже маєте акаунт? <a href="{% url 'login' %}">Увійти</a></p>
+                <div class="mb-3">
+                    <label for="id_password1" class="form-label">Пароль</label>
+                    {{ form.password1 }}
+                    <div class="invalid-feedback">
+                        Пароль повинен бути не менше 8 символів, містити цифри та букви.
+                    </div>
                 </div>
+                <div class="mb-3">
+                    <label for="id_password2" class="form-label">Підтвердьте пароль</label>
+                    {{ form.password2 }}
+                    <div class="invalid-feedback">Паролі повинні співпадати.</div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Зареєструватися</button>
+            </form>
+            <hr>
+            <div class="text-center">
+                <p>Вже маєте акаунт? <a href="{% url 'login' %}">Увійти</a></p>
             </div>
         </div>
     </div>

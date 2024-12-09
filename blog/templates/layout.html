@@ -9,6 +9,7 @@
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
   </head>
   <body>
+    {% if user.is_authenticated %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">Новини</a>
@@ -36,35 +37,24 @@
             </li>
             <li class="nav-item">
               <a class="nav-link {% if request.path == '/users/profile/' %}active{% endif %}" href="{% url 'profile' %}">Профіль</a>
-          </li>
-          
-            {% if user.is_authenticated %}
+            </li>
             <li class="nav-item">
               <form action="{% url 'logout' %}" method="post" class="d-inline">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger nav-link border-0">Вийти</button>
               </form>
             </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link {% if request.path == '/login/' %}active{% endif %}" href="{% url 'login' %}">Увійти</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {% if request.path == '/register/' %}active{% endif %}" href="{% url 'register' %}">Реєстрація</a>
-            </li>
-            {% endif %}
           </ul>
         </div>
       </div>
     </nav>
+    {% endif %}
     <main class="container my-5">
       {% block content %}
       <p></p>
       {% endblock %}
     </main>
-    <footer class="bg-dark text-white text-center py-3">
-      <p>&copy; 2024 Всі права захищені.</p>
-    </footer>
+    
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
   </body>
 </html>
