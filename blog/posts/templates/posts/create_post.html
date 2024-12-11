@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% load form_tags %}
+
+{% block title %}Створити пост{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <h1 class="text-center mb-4">Створити пост</h1>
+            <form method="POST" class="shadow p-4 rounded bg-light">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_title" class="form-label">Заголовок</label>
+                    {{ form.title|add_class:"form-control" }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_content" class="form-label">Контент</label>
+                    {{ form.content|add_class:"form-control" }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_photo_url" class="form-label">URL фото</label>
+                    {{ form.photo_url|add_class:"form-control" }}
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Опублікувати</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
