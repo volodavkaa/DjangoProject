@@ -17,7 +17,13 @@
                     <p class="card-text">{{ post.content|truncatewords:15 }}</p>
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted">Опубліковано: {{ post.created_at }}</small>
+                    <small class="text-muted">
+                        Автор: {{ post.author.username }} <!-- Відображення ніку автора -->
+                    </small>
+                    <br>
+                    <small class="text-muted">
+                        Опубліковано: {{ post.created_at|date:"d F Y р. H:i" }}
+                    </small>
                     <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary btn-sm float-end">Детальніше</a>
                 </div>
             </div>
