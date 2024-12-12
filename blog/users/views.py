@@ -4,17 +4,20 @@ from users.forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 
+from django.contrib.auth import login
+
 def register(request):
     if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Ваш обліковий запис для {username} створено! Тепер ви можете увійти.')
-            return redirect('login')
+            user = form.save()
+            login(request, user)  
+            messages.success(request, f'Ласкаво просимо, {user.username}!')
+            return redirect('homepage')  
     else:
-        form = UserRegisterForm()
+        form = UserCreationForm()
     return render(request, 'users/register.html', {'form': form})
+
 
 class CustomLoginView(LoginView):
     template_name = 'users/login.html'  
