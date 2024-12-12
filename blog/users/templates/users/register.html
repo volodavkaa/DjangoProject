@@ -1,43 +1,31 @@
 {% extends "layout.html" %}
-{% load static %}
+{% load form_tags %}
 
 {% block title %}Реєстрація{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-lg-6 col-md-8">
             <h1 class="text-center mb-4">Реєстрація</h1>
-            <form id="registrationForm" method="POST" novalidate>
+            <form method="POST" class="p-4 shadow rounded bg-light">
                 {% csrf_token %}
-                <div class="mb-3">
-                    <label for="id_username" class="form-label">Ім'я користувача</label>
-                    {{ form.username }}
-                    <div class="invalid-feedback">Будь ласка, введіть ім'я користувача.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="id_email" class="form-label">Електронна пошта</label>
-                    {{ form.email }}
-                    <div class="invalid-feedback">Будь ласка, введіть дійсну електронну пошту.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="id_password1" class="form-label">Пароль</label>
-                    {{ form.password1 }}
-                    <div class="invalid-feedback">
-                        Пароль повинен бути не менше 8 символів, містити цифри та букви.
+                {% for field in form %}
+                    <div class="mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="text-danger">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="id_password2" class="form-label">Підтвердьте пароль</label>
-                    {{ form.password2 }}
-                    <div class="invalid-feedback">Паролі повинні співпадати.</div>
-                </div>
+                {% endfor %}
                 <button type="submit" class="btn btn-primary w-100">Зареєструватися</button>
+                <div class="text-center mt-3">
+                    Вже маєте акаунт? <a href="{% url 'login' %}">Увійти</a>
+                </div>
             </form>
-            <hr>
-            <div class="text-center">
-                <p>Вже маєте акаунт? <a href="{% url 'login' %}">Увійти</a></p>
-            </div>
         </div>
     </div>
 </div>

@@ -1,21 +1,20 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from users.forms import UserRegisterForm
+from users.forms import UserRegisterForm  
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
-
 from django.contrib.auth import login
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)  
         if form.is_valid():
             user = form.save()
             login(request, user)  
             messages.success(request, f'Ласкаво просимо, {user.username}!')
             return redirect('homepage')  
     else:
-        form = UserCreationForm()
+        form = UserRegisterForm() 
     return render(request, 'users/register.html', {'form': form})
 
 
