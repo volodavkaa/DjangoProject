@@ -3,13 +3,24 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-<h1>{{ post.title }}</h1>
-<p>{{ post.content }}</p>
-<p>Опубліковано: {{ post.created_at }}</p>
-
-{% if post.photo_url %}
-    <img src="{{ post.photo_url }}" alt="Фото посту" style="max-width: 100%; height: auto;">
-{% else %}
-    <p>Фото не додано.</p>
-{% endif %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                {% if post.get_photo %}
+                <img src="{{ post.get_photo }}" class="card-img-top" alt="Фото посту">
+                {% endif %}
+                <div class="card-body">
+                    <h1 class="card-title text-center">{{ post.title }}</h1>
+                    <p class="card-text text-muted text-center">
+                        Опубліковано: {{ post.created_at|date:"d F Y р. H:i" }} |
+                        Автор: <strong>{{ post.author.username }}</strong>
+                    </p>
+                    <hr>
+                    <p class="card-text">{{ post.content|linebreaks }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

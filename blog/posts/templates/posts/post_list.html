@@ -9,7 +9,9 @@
         {% for post in posts %}
         <div class="col-md-4 col-sm-6 mb-4">
             <div class="card h-100">
-                {% if post.photo_url %}
+                {% if post.photo %}
+                <img src="{{ post.photo.url }}" class="card-img-top" alt="Фото посту">
+                {% elif post.photo_url %}
                 <img src="{{ post.photo_url }}" class="card-img-top" alt="Фото посту">
                 {% endif %}
                 <div class="card-body d-flex flex-column">

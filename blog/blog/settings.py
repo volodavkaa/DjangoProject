@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-v0gs6dd&=8%=e8+_lerjq4ld6w^d6!^eiv13!gt$o^)0zrh@27'
@@ -84,7 +84,8 @@ TIME_ZONE = 'Europe/Kyiv'
 
 USE_I18N = True
 USE_TZ = True
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
